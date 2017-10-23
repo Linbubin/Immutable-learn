@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>immutable学习</title>
+	<script src="Immutable.min.js"></script>
+	<script src="node_modules/immuter/lib/index.js"></script>
+</head>
+<body>
+	<script>
+		// var map = Immutable.fromJS({ a: 1, b: 2, c: 3 });
+		// var map1 = map.set('a', 10);
+		// console.log(map.get('a')); // 1
+		// console.log(map1.get('a')); // 10
+
+		// var foo = Immutable.fromJS({a: {b: 1}});
+		// var bar = foo.setIn(['a', 'b'], 2);
+		// foo.getIn(['a', 'b']); // 1
+		// foo === bar; // false
+
+		// Immutable.is(map, map1); // false
+
+		// var a = Immutable.Map({
+		//   select: 'users',
+		//   filter: Immutable.Map({ name: 'Cam' })
+		// })
+		// var b = a.set('select', 'people');
+
+		// a === b; // false
+		// a.get('filter') === b.get('filter'); // true
+
+		// // 值相同，则判断为相等.   如果set时未改变对象的值，则会引用原来对象（===为true）
+		// map1 = Map( {a: 1, b: 2, c: 3 });
+	 //  map2 = map1.set('b', 2);
+	 //  map1.equals(map2); // 由于没有改变b的值，所以是相等的  true
+	 //  map1 === map2; // true
+	 //  map3 = map1.set('b', 50);
+	 //  map1.equals(map3); // false
+
+	 //  // 同上，如果是额外申请，即使是相同值，也会指向不同的地址
+	 //  // Immutable.is只判断值是否相等，不管地址是否相等
+	 //  let map1 = Immutable.Map({a:1, b:1, c:1});
+		// let map2 = Immutable.Map({a:1, b:1, c:1});
+		// map1 === map2; // false
+		// Immutable.is(map1, map2); // true
+
+	 //  // 可迭代
+	 //  const aList = List([ 1, 2, 3 ])
+		// const anArray = [ 0, ...aList, 4, 5 ] // [ 0, 1, 2, 3, 4, 5 ]
+
+		// // 深层嵌套
+		// const nested = fromJS({ a: { b: { c: [ 3, 4, 5 ] } } })
+		// const nested2 = nested.mergeDeep({ a: { b: { d: 6 } } })
+		// // Map { a: Map { b: Map { c: List [ 3, 4, 5 ], d: 6 } } }
+		// console.log(nested2.getIn([ 'a', 'b', 'd' ])) // 6
+		// const nested3 = nested2.updateIn([ 'a', 'b', 'd' ], value => value + 1)
+		// console.log(nested3);
+		// // Map { a: Map { b: Map { c: List [ 3, 4, 5 ], d: 7 } } }
+		// const nested4 = nested3.updateIn([ 'a', 'b', 'c' ], list => list.push(6))
+		// // Map { a: Map { b: Map { c: List [ 3, 4, 5, 6 ], d: 7 } } }
+
+		Immuter.get: <T: Object>(obj: T, string | Array, defaults: any) => any
+
+		// Get a deep property by dot path or array path
+		// Note: get wouldn't deep clone result for performance issues, just make sure all your modify operations are using immuter :).
+		
+		Immuter.get<T: Object>(obj: T, path: { [string]: string | Array }, defaults: { [string]: any }) => { [string]: any }
+
+		// Get deep properties by an Object with custom key.
+
+		Immuter.set<T: Object>(obj: T, string | Array, value: any) => T
+
+		// Set a deep property by dot path or array path
+
+		Immuter.set<T: Object>(obj: T, pathValueMap: { [string | Array]: any }) => T
+	</script>
+</body>
+</html>
