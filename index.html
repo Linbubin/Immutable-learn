@@ -63,7 +63,7 @@
 
 		// Get a deep property by dot path or array path
 		// Note: get wouldn't deep clone result for performance issues, just make sure all your modify operations are using immuter :).
-		
+
 		Immuter.get<T: Object>(obj: T, path: { [string]: string | Array }, defaults: { [string]: any }) => { [string]: any }
 
 		// Get deep properties by an Object with custom key.
@@ -73,6 +73,8 @@
 		// Set a deep property by dot path or array path
 
 		Immuter.set<T: Object>(obj: T, pathValueMap: { [string | Array]: any }) => T
+
+		// test
 	</script>
 </body>
 </html>
